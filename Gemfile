@@ -35,6 +35,8 @@ gem 'ffaker'
 gem 'grape'
 gem 'grape-rails-routes'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 
 
 group :development, :test do
