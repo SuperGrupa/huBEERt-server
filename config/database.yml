@@ -2,7 +2,7 @@ connection: &connection
   adapter: postgresql
   encoding: unicode
   host:     localhost
-  database: huBEERt
+  database: hubeert
   pool: 5
   username: postgres
   password: dako222

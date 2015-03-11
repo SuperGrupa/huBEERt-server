@@ -33,6 +33,7 @@ gem 'simplecov', :require => false, :group => :test
 gem 'ffaker'
 
 gem 'grape'
+gem 'grape-rails-routes'
 
 
 

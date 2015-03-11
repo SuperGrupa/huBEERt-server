@@ -65,6 +65,8 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
+    grape-rails-routes (1.0)
+      rails (>= 4.1.4)
     hashie (3.4.0)
     hike (1.2.3)
     i18n (0.7.0)
@@ -186,6 +188,7 @@ DEPENDENCIES
   factory_girl_rails
   ffaker
   grape
+  grape-rails-routes
   jbuilder (~> 2.0)
   jquery-rails
   json_spec
