@@ -1,16 +1,20 @@
-connection: &connection
-  adapter: postgresql
-  encoding: unicode
-  host:     localhost
-  database: hubeert
-  pool: 5
-  username: postgres
-  password: dako222
-
 development:
-  <<: *connection
-  database: huBEERt_development
+  adapter: postgresql
+  encoding: utf8
+  database: hubeert_development
+  host: localhost
+  pool: 5
+  username: huBEERt
+  password: "no_hubeert_moze_szocika"
 
-test: &test
-  <<: *connection
-  database: huBEERt_test
+test: &TEST
+  adapter: postgresql
+  encoding: utf8
+  database: hubeert_test
+  host: localhost
+  pool: 5
+  username: huBEERt
+  password: "no_hubeert_moze_szocika"
+
+cucumber:
+  <<: *TEST
