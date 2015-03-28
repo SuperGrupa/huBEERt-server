@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150328153149) do
     t.string   "lastname"
     t.date     "date_of_birth"
     t.string   "city"
+  end
 
 
   create_table "addresses", force: true do |t|
