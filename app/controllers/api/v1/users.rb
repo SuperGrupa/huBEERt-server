@@ -5,8 +5,13 @@ module API
 
       resource :users do
         desc "Return list of users"
-        get do
-          User.all
+        get jbuilder: 'users/index' do
+          @users = User.all
+        end
+
+        desc "Return one user"
+        get ':id', jbuilder: 'users/show' do
+          @user = User.find(params[:id])
         end
       end
     end

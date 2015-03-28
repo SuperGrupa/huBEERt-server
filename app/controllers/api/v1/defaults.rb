@@ -8,6 +8,7 @@ module API
                 # common Grape settings
                 version 'v1'
                 format :json
+                formatter :json, Grape::Formatter::Jbuilder
 
                 # global handler for simple not found case
                 rescue_from ActiveRecord::RecordNotFound do |e|
