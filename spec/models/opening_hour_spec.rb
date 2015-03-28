@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe OpeningHour, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe OpeningHour do
+    describe 'validations' do
+        it { should validate_presence_of :from }
+        it { should validate_length_of :from }
+        it { should validate_length_of :to }
+    end
 end

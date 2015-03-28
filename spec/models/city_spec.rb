@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe City, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe City do
+    describe 'validations' do
+        it { should validate_presence_of :name }
+        it { should validate_length_of :name }
+    end
 end
