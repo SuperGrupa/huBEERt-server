@@ -37,6 +37,8 @@ gem 'grape-rails-routes'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'decent_exposure'
+
 
 
 group :development, :test do
