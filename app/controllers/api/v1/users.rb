@@ -13,6 +13,23 @@ module API
         get ':id', jbuilder: 'users/show' do
           @user = User.find(params[:id])
         end
+
+
+
+
+
+        params do
+          requires :user, type: Hash, desc: "user attributes" do
+            requires :email, type: String, allow_blank: false, regexp: /.+@.+/, documentation: { example: 'example@hubeert.com' }
+            requires :password, type: String, allow_blank: false
+          end
+        end
+
+        desc 'Create a user'
+        post do
+          User.create! params[:user].to_h
+        end
+
       end
     end
   end

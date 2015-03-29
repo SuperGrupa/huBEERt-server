@@ -16,6 +16,8 @@ module API
                 end
 
                 # global exception handler, used for error notifications
+=begin
+
                 rescue_from :all do |e|
                     if Rails.env.development?
                         raise e
@@ -24,6 +26,8 @@ module API
                         error_response(message: "Internal server error", status: 500)
                     end
                 end
+=end
+
 =begin
         # HTTP header based authentication
         before do
