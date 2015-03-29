@@ -37,9 +37,8 @@ gem 'grape-rails-routes'
 
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'decent_exposure'
-
-
+gem 'grape-jbuilder'
+gem 'grape-swagger'
 
 group :development, :test do
   gem 'rspec-rails'

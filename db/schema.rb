@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20150328153149) do
+ActiveRecord::Schema.define(version: 20150329125739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "login"
-    t.string   "password"
-    t.string   "firstname"
-    t.string   "lastname"
-    t.date     "date_of_birth"
-    t.string   "city"
-  end
-
 
   create_table "addresses", force: true do |t|
     t.string   "number"
@@ -89,6 +77,19 @@ ActiveRecord::Schema.define(version: 20150328153149) do
   end
 
   add_index "streets", ["district_id"], name: "index_streets_on_district_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "login"
+    t.string   "password"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.date     "date_of_birth"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "hidden",        default: false
+  end
 
   create_table "week_days", force: true do |t|
     t.string   "name"
