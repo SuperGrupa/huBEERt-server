@@ -44,7 +44,19 @@ module API
           user
         end
 
+        desc "Hide a user"
+        delete ':id' do
+          user = User.find(params[:id])
+          user.update(hidden: true)
+          user
+        end
 
+        desc "Unhide a user"
+        put ':id' do
+          user = User.find(params[:id])
+          user.update(hidden: false)
+          user
+        end
 
       end
     end

@@ -92,6 +92,33 @@ module Api
         end
 
       end
+
+      describe "DELETE /api/v1/users/:id" do
+        before do
+          @user = User.create! user_atrr
+        end
+
+        it 'hides a user' do
+          delete "/api/v1/users/#{@user.id}"
+
+          expect(json['hidden']).to eq(true)
+          expect(User.find(@user.id).hidden).to eq(true)
+        end
+      end
+
+      describe "PUT /api/v1/users/:id" do
+        before do
+          @user = User.create! user_atrr
+        end
+
+        it 'unhides a user' do
+          put "/api/v1/users/#{@user.id}"
+
+          expect(json['hidden']).to eq(false)
+          expect(User.find(@user.id).hidden).to eq(false)
+        end
+      end
+
     end
   end
 end
