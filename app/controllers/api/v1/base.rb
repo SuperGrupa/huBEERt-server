@@ -2,7 +2,7 @@ module API
   module V1
     class Base < Grape::API
       mount API::V1::Hello
-      #mount API::V1::Wings
+      mount API::V1::Users
     end
   end
 end

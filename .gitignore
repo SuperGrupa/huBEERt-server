@@ -13,4 +13,7 @@
 /tmp
 
 .idea
+
 /config/database.yml
+coverage
+
