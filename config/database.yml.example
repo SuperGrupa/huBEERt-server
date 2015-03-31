@@ -1,0 +1,16 @@
+connection: &connection
+  adapter: postgresql
+  encoding: unicode
+  host:     localhost
+  database: huBEERt
+  pool: 5
+  username: postgres
+  password: dako222
+
+development:
+  <<: *connection
+  database: huBEERt_development
+
+test: &test
+  <<: *connection
+  database: huBEERt_test
