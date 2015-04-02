@@ -17,8 +17,10 @@ module API
                 desc 'Create place'
                 params do
                     requires :place, type: Hash, desc: 'place attributes' do
-                        requires :email, type: String, allow_blank: false, regexp: /.+@.+/, documentation: { example: 'example@hubeert.com' }
-                        requires :password, type: String, allow_blank: false
+                        requires :name, type: String, allow_blank: false
+                        requires :description, type: String, allow_blank: false
+                        optional :phone, type: Integer
+                        optional :postcode, type: String
                     end
                 end
                 post do
@@ -27,34 +29,32 @@ module API
 
                 desc 'Update place'
                 params do
-                    requires :user, type: Hash, desc: "user attributes" do
-                        optional :email, type: String, allow_blank: false, regexp: /.+@.+/, documentation: { example: 'example@hubeert.com' }
-                        optional :password, type: String, allow_blank: false
-                        optional :firstname, type: String
-                        optional :lastname, type: String
-                        optional :city, type: String
-                        optional :date_of_birth, type: Date
+                    requires :place, type: Hash, desc: 'place attributes' do
+                        optional :name, type: String, allow_blank: false
+                        optional :description, type: String, allow_blank: false
+                        optional :phone, type: Integer
+                        optional :postcode, type: String
                     end
                 end
 
                 patch ':id' do
-                    user = User.find(params[:id])
-                    user.update(params[:user].to_h)
-                    user
+                    place = Place.find(params[:id])
+                    place.update(params[:place].to_h)
+                    place
                 end
 
-                desc "Hide a user"
+                desc 'Hide a place'
                 delete ':id' do
-                    user = User.find(params[:id])
-                    user.update(hidden: true)
-                    user
+                    place = Place.find(params[:id])
+                    place.update(hidden: true)
+                    place
                 end
 
-                desc "Unhide a user"
+                desc 'Unhide a place'
                 put ':id' do
-                    user = User.find(params[:id])
-                    user.update(hidden: false)
-                    user
+                    place = Place.find(params[:id])
+                    place.update(hidden: false)
+                    place
                 end
 
             end
