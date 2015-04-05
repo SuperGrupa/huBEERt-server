@@ -24,7 +24,7 @@ module API
                     end
                 end
                 post do
-                    Place.create! params[:place].to_h
+                    Place.create params[:place].to_h
                 end
 
                 desc 'Update place'
