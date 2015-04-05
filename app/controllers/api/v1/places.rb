@@ -20,7 +20,7 @@ module API
                         requires :name, type: String, allow_blank: false
                         requires :description, type: String, allow_blank: false
                         optional :phone, type: Integer
-                        optional :postcode, type: String
+                        optional :email, type: String, regexp: Place::EMAIL_FORMAT
                     end
                 end
                 post do
@@ -33,7 +33,7 @@ module API
                         optional :name, type: String, allow_blank: false
                         optional :description, type: String, allow_blank: false
                         optional :phone, type: Integer
-                        optional :postcode, type: String
+                        optional :email, type: String
                     end
                 end
 
