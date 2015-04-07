@@ -33,7 +33,7 @@ module API
                         optional :name, type: String, allow_blank: false
                         optional :description, type: String, allow_blank: false
                         optional :phone, type: Integer
-                        optional :email, type: String
+                        optional :email, type: String, regexp: Place::EMAIL_FORMAT
                     end
                 end
 

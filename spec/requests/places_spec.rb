@@ -79,7 +79,10 @@ module Api
 
                 context 'with invalid attributes' do
                     it 'returns an invalid email error' do
-                        patch "/api/v1/places/#{@place.id}", place: { email: 'invalidemail' }
+                        expect {
+                            patch "/api/v1/places/#{@place.id}", place: { email: 'invalidemail' }
+                        }.not_to change(Place, :count)
+
                         expect(json['error']).not_to eq(nil)
                     end
                 end
