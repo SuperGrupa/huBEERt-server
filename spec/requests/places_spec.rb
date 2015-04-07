@@ -61,6 +61,49 @@ module Api
                     end
                 end
             end
+
+            describe 'PUT api/v1/places/:id' do
+                before do
+                    @place = Place.create! place_attributes
+                end
+
+                context 'with valid attributes' do
+                    it 'updates a place' do
+                        new_name = 'U Odyna'
+                        patch "/api/v1/places/#{@place.id}", place: { name: new_name }
+
+                        expect(json['name']).to eq(new_name)
+                        expect(Place.find(@place.id).name).to eq(new_name)
+                    end
+                end
+
+                context 'with invalid attributes' do
+                    it 'returns an invalid email error' do
+                        patch "/api/v1/places/#{@place.id}", place: { email: 'invalidemail' }
+                        expect(json['error']).not_to eq(nil)
+                    end
+                end
+
+                it 'unhides a place' do
+                    put "/api/v1/places/#{@place.id}", place: { hidden: false }
+
+                    expect(json['hidden']).to eq(false)
+                    expect(Place.find(@place.id).hidden).to eq(false)
+                end
+            end
+
+            describe 'DELETE api/v1/places/:id' do
+                before do
+                    @place = Place.create! place_attributes
+                end
+
+                it 'hides a place' do
+                    delete "/api/v1/places/#{@place.id}"
+
+                    expect(json['hidden']).to eq(true)
+                    expect(Place.find(@place.id).hidden).to eq(true)
+                end
+            end
         end
     end
 end
