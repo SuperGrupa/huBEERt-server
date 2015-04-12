@@ -70,7 +70,7 @@ module Api
                 context 'with valid attributes' do
                     it 'updates a place' do
                         new_name = 'U Odyna'
-                        patch "/api/v1/places/#{@place.id}", place: { name: new_name }
+                        patch "/api/v1/places/#{@place.id}", { name: new_name }
 
                         expect(json['name']).to eq(new_name)
                         expect(Place.find(@place.id).name).to eq(new_name)
@@ -80,7 +80,7 @@ module Api
                 context 'with invalid attributes' do
                     it 'returns an invalid email error' do
                         expect {
-                            patch "/api/v1/places/#{@place.id}", place: { email: 'invalidemail' }
+                            patch "/api/v1/places/#{@place.id}", { email: 'invalidemail' }
                         }.not_to change(Place, :count)
 
                         expect(json['error']).not_to eq(nil)
@@ -88,7 +88,7 @@ module Api
                 end
 
                 it 'unhides a place' do
-                    put "/api/v1/places/#{@place.id}", place: { hidden: false }
+                    put "/api/v1/places/#{@place.id}", { hidden: false }
 
                     expect(json['hidden']).to eq(false)
                     expect(Place.find(@place.id).hidden).to eq(false)

@@ -29,17 +29,14 @@ module API
 
                 desc 'Update place'
                 params do
-                    requires :place, type: Hash, desc: 'place attributes' do
-                        optional :name, type: String, allow_blank: false
-                        optional :description, type: String, allow_blank: false
-                        optional :phone, type: Integer
-                        optional :email, type: String, regexp: Place::EMAIL_FORMAT
-                    end
+                    optional :name, type: String, allow_blank: false
+                    optional :description, type: String, allow_blank: false
+                    optional :phone, type: Integer
+                    optional :email, type: String, regexp: Place::EMAIL_FORMAT
                 end
-
                 patch ':id' do
                     place = Place.find(params[:id])
-                    place.update(params[:place].to_h)
+                    place.update(params.to_h)
                     place
                 end
 
