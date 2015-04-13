@@ -87,7 +87,7 @@ module Api
 
           it 'return a password error' do
             patch "/api/v1/users/#{@user.id}", user: {date_of_birth: 'asd'}
-            expect(json['error']).not_to eq(nil)
+            expect(json['error']).not_to eq(true)
           end
         end
 
