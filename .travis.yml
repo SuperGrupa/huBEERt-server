@@ -1,2 +1,13 @@
 language: ruby
 script: 'true'
+deploy:
+  provider:
+    provider: cloudfoundry
+  api: https://api.de.a9s.eu
+  username: dakolech@gmail.com
+  password:
+    secure: HTb2Mr5WIwMan8HzYVQ4Rq2uMJPYAKClePBK/Z/90SkFAjRnZvB8xdPtgetaadYwLPIrBpIuEZavsUUJoXIX8VPo/BVUbkq7kHqG26yO3DRlI7XMDQ+zV2ywGyRx3aBZcblsigcE+tbOz2pSsbrHDfyKVMD2CDf8dOAVI8oU9ys=
+  organization: ''
+  space: test
+  on:
+    repo: SuperGrupa/huBEERt-server

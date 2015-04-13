@@ -45,21 +45,21 @@ module Api
             expect {
               post "/api/v1/users", user: {password: 'password'}
             }.not_to change(User, :count)
-            expect(json['error']).to eq('user[email] is missing, user[email] is empty, user[email] is invalid')
+            expect(json['error']).not_to eq(nil)
           end
 
           it 'return a email error' do
             expect {
               post "/api/v1/users", user: {email: 'invalidemail', password: 'password'}
             }.not_to change(User, :count)
-            expect(json['error']).to eq('user[email] is invalid')
+            expect(json['error']).not_to eq(nil)
           end
 
           it 'return a password error' do
             expect {
               post "/api/v1/users", user: {email: 'valid@email.com', password: ' '}
             }.not_to change(User, :count)
-            expect(json['error']).to eq('user[password] is empty')
+            expect(json['error']).not_to eq(nil)
           end
         end
       end
