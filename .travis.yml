@@ -1,5 +1,5 @@
 language: ruby
-script: 'true'
+script: bundle exec rspec spec
 deploy:
   provider:
     provider: cloudfoundry

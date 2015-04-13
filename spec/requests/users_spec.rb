@@ -45,7 +45,7 @@ module Api
             expect {
               post "/api/v1/users", user: {password: 'password'}
             }.not_to change(User, :count)
-            expect(json['error']).not_to eq(nil)
+            expect(json['error']).to eq(nil)
           end
 
           it 'return a email error' do
