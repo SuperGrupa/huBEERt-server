@@ -1,0 +1,11 @@
+connection: &connection
+  adapter: postgresql
+  encoding: unicode
+  host:     localhost
+  pool: 5
+  username: postgres
+  password:
+
+test: &test
+  <<: *connection
+  database: huBEERt_test

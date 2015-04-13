@@ -62,7 +62,7 @@ module Api
                 end
             end
 
-            describe 'PUT api/v1/places/:id' do
+            describe 'PATCH api/v1/places/:id' do
                 before do
                     @place = Place.create! place_attributes
                 end

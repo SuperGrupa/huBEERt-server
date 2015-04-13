@@ -1,5 +1,19 @@
 language: ruby
-script: 'true'
+rvm:
+  - 2.1.3
+script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rake
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database huBEERt_test' -U postgres
+  - cp config/secrets.yml.example config/secrets.yml
+addons:
+  code_climate:
+    repo_token: ddb00eb0aaf5ba29c767f3a809f55be3688bf62f0a31aaf902687e39d9ccee27
+notifications:
+  email: false
 deploy:
   provider:
     provider: cloudfoundry

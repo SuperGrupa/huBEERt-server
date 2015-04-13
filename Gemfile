@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 
 gem 'rails_12factor', group: :production
 
+gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'simplecov', :require => false, :group => :test
 gem 'ffaker'
 

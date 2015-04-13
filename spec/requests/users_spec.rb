@@ -64,7 +64,7 @@ module Api
         end
       end
 
-      describe "PUT /api/v1/users/:id" do
+      describe "PATCH /api/v1/users/:id" do
         before do
           @user = User.create! user_atrr
         end
