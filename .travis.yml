@@ -1,7 +1,12 @@
 language: ruby
-script: bundle exec rspec spec
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+  - bundle exec rspec spec
 before_script:
-  - cp config/database.yml.travis config/database.yml.example
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database huBEERt_test' -U postgres
 deploy:
   provider:
     provider: cloudfoundry
