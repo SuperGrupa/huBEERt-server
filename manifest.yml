@@ -1,0 +1,14 @@
+---
+applications:
+- name: huBEERt
+  memory: 256M
+  instances: 1
+  host: api
+  domain: de.a9sapp.eu
+  path: "."
+  services:
+    huBEERt_development:
+      label: postgresql
+      provider: core
+      version: '9.1'
+      plan: Pluto-free
