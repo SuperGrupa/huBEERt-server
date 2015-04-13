@@ -1,21 +1,11 @@
-postgresql: &postgresql
+connection: &connection
   adapter: postgresql
+  encoding: unicode
+  host:     localhost
+  pool: 5
   username: postgres
   password:
-  database: huBEERt_<%= Rails.env %>
-  min_messages: ERROR
 
-defaults: &defaults
-  pool: 5
-  timeout: 5000
-  host: localhost
-  <<: *<%= ENV['DB'] || "postgresql" %>
-
-development:
-  <<: *defaults
-
-test:
-  <<: *defaults
-
-production:
-  <<: *defaults
+test: &test
+  <<: *connection
+  database: huBEERt_test
