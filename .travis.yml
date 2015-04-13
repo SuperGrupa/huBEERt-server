@@ -6,7 +6,7 @@ script:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database huBEERt_test' -U postgres
-  - cp config/secrets.yml config/secrets.yml.example
+  - cp config/secrets.yml.example config/secrets.yml
 deploy:
   provider:
     provider: cloudfoundry
