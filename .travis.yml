@@ -3,10 +3,10 @@ script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
   - bundle exec rake
-  - bundle exec rspec spec
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database huBEERt_test' -U postgres
+  - cp config/secrets.yml config/secrets.yml.example
 deploy:
   provider:
     provider: cloudfoundry
