@@ -1,6 +1,6 @@
 language: ruby
 script:
-  - bundle exec rake db:test:setup
+  - bundle exec rake db:setup --trace
   - bundle exec rake
 before_script:
   - cp config/database.travis.yml config/database.yml
