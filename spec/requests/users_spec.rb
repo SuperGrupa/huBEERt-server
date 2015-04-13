@@ -45,7 +45,7 @@ module Api
             expect {
               post "/api/v1/users", user: {password: 'password'}
             }.not_to change(User, :count)
-            expect(json['error']).to eq(nil)
+            expect(json['error']).not_to eq(nil)
           end
 
           it 'return a email error' do
@@ -87,7 +87,7 @@ module Api
 
           it 'return a password error' do
             patch "/api/v1/users/#{@user.id}", user: {date_of_birth: 'asd'}
-            expect(json['error']).to eq(nil)
+            expect(json['error']).not_to eq(nil)
           end
         end
 
