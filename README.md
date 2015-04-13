@@ -1,5 +1,6 @@
 huBEERt Server repository
 ===================================
+[![Code Climate](https://codeclimate.com/github/SuperGrupa/huBEERt-server/badges/gpa.svg)](https://codeclimate.com/github/SuperGrupa/huBEERt-server)
 [![Test Coverage](https://codeclimate.com/github/SuperGrupa/huBEERt-server/badges/coverage.svg)](https://codeclimate.com/github/SuperGrupa/huBEERt-server)
 [![Travis CI](https://travis-ci.org/SuperGrupa/huBEERt-server.svg?branch=master)](https://travis-ci.org/SuperGrupa/huBEERt-server)
 
