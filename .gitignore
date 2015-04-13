@@ -16,4 +16,6 @@
 
 /config/database.yml
 coverage
-
+.project
+/config/secrets.yml
+*.*~

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :street do
     name "MyString"
-district nil
+    district nil
   end
 
 end
