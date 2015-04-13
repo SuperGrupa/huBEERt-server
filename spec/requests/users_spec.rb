@@ -72,7 +72,7 @@ module Api
         describe 'with valid atributes' do
           it 'update a user' do
             atrr = "asd"
-            patch "/api/v1/users/#{@user.id}", {"email" => user_atrr[:email], "firstname" => atrr}
+            patch "/api/v1/users/#{@user.id}", {email: user_atrr[:email], firstname: atrr}
 
             expect(json['firstname']).to eq(atrr)
             expect(User.find(@user.id).firstname).to eq(atrr)
