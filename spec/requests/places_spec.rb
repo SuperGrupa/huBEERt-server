@@ -62,7 +62,7 @@ module Api
                 end
             end
 
-            describe 'PUT api/v1/places/:id' do
+            describe 'PATCH api/v1/places/:id' do
                 before do
                     @place = Place.create! place_attributes
                 end
@@ -70,7 +70,7 @@ module Api
                 context 'with valid attributes' do
                     it 'updates a place' do
                         new_name = 'U Odyna'
-                        patch "/api/v1/places/#{@place.id}", { name: new_name }
+                        patch "/api/v1/places/#{@place.id}", { :name => new_name }
 
                         expect(json['name']).to eq(new_name)
                         expect(Place.find(@place.id).name).to eq(new_name)
