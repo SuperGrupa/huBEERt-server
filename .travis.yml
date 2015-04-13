@@ -1,5 +1,7 @@
 language: ruby
 script: bundle exec rspec spec
+before_script:
+  - cp config/database.yml.travis config/database.yml.example
 deploy:
   provider:
     provider: cloudfoundry
