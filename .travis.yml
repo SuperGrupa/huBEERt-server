@@ -2,7 +2,7 @@ language: ruby
 script:
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - bundle exec rake rspec
+  - rspec
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database huBEERt_test' -U postgres
