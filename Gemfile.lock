@@ -92,6 +92,9 @@ GEM
     grape-swagger (0.10.1)
       grape (>= 0.8.0)
       grape-entity
+    grape-swagger-rails (0.1.0)
+      grape-swagger (>= 0.7.2)
+      railties (>= 3.2.12)
     hashie (3.4.1)
     i18n (0.7.0)
     ice_nine (0.11.1)
@@ -117,6 +120,8 @@ GEM
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-contrib (1.2.0)
+      rack (>= 0.9.1)
     rack-cors (0.3.1)
     rack-mount (0.8.3)
       rack (>= 1.0.0)
@@ -218,12 +223,15 @@ DEPENDENCIES
   factory_girl_rails
   ffaker
   grape
+  grape-entity
   grape-jbuilder
   grape-rails-routes
   grape-swagger
+  grape-swagger-rails
   jbuilder (~> 2.0)
   json_spec
   pg
+  rack-contrib
   rack-cors
   rails (= 4.2.1)
   rails_12factor

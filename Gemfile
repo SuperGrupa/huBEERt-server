@@ -39,7 +39,12 @@ gem 'grape-rails-routes'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'grape-jbuilder'
+
+gem 'grape-entity'
+gem 'rack-contrib'
 gem 'grape-swagger'
+gem 'grape-swagger-rails'
+
 
 group :development, :test do
   gem 'rspec-rails'
