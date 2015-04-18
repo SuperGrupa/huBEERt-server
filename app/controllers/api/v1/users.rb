@@ -2,6 +2,7 @@ module API
   module V1
     class Users < Grape::API
       include API::V1::Defaults
+      use Rack::JSONP
 
       resource :users do
         desc "Return list of users"
