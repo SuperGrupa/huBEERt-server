@@ -2,13 +2,11 @@ huBEERt Server repository
 ===================================
 
 # Requirements
-
 * Ruby
 * Ruby on rails
 * PostgreSQL
 
 # How to install
-
 ```
 bundle install
 rake db:setup
@@ -20,6 +18,5 @@ create config/secrets.yml
 
 # API Documentation
 
-```
-http://localhost:3000/apidoc
-```
+> http://localhost:3000/apidoc
+
