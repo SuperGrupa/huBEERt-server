@@ -1,1 +1,2 @@
-json.extract! place, :id, :name, :description, :phone, :email, :created_at, :updated_at, :hidden
+json.extract! place, :id, :name, :description, :phone, :email
+json.partial! 'places/address', place: place
