@@ -6,7 +6,7 @@ module API
             resource :places do
                 desc 'Return list of places'
                 get jbuilder: 'places/index' do
-                    @places = Place.includes(address: [street: {district: :city}]).all
+                    @places = Place.includes(address: [street: {district: :city}])
                 end
 
                 desc 'Return one place'
