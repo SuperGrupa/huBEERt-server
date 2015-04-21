@@ -6,7 +6,7 @@ module API
             resource :places do
                 desc 'Return list of places'
                 get jbuilder: 'places/index' do
-                    @places = Place.all
+                    @places = Place.includes(address: [street: {district: :city}])
                 end
 
                 desc 'Return one place'
@@ -36,6 +36,7 @@ module API
                 end
                 patch ':id' do
                     place = Place.find(params[:id])
+                    p params
                     place.update(params.to_h)
                     place
                 end
