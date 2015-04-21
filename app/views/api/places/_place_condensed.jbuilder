@@ -1,2 +1,2 @@
 json.extract! place, :id, :name, :hidden
-json.partial! 'places/address', place: place
+json.partial! 'places/address', place: place unless place.address.nil?

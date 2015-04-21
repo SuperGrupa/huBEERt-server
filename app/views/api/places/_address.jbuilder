@@ -1,5 +1,5 @@
 json.address do
-    json.number place.address.number
-    json.street place.address.street.name
     json.city   place.address.street.district.city.name
+    json.street place.address.street.name
+    json.number place.address.number
 end
