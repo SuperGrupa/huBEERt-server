@@ -31,7 +31,7 @@ gem 'rails_12factor', group: :production
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'simplecov', :require => false, :group => :test
-gem 'ffaker'
+gem 'faker'
 
 gem 'grape'
 gem 'grape-rails-routes'
@@ -44,6 +44,8 @@ gem 'grape-entity'
 gem 'rack-contrib'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
+
+gem 'devise'
 
 
 group :development, :test do
