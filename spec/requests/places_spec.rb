@@ -22,10 +22,10 @@ module Api
                 context 'GET api/v1/places/:id' do
                     it 'returns a place by id' do
                         get "/api/v1/places/#{@place.id}"
-                        expect(json['description']).to eq(@place.description)
-                        expect(json['name']).to eq(@place.name)
-                        expect(json['phone']).to eq(@place.phone)
-                        expect(json['email']).to eq(@place.email)
+                        expect(json['basic_info']['description']).to eq(@place.description)
+                        expect(json['basic_info']['name']).to eq(@place.name)
+                        expect(json['basic_info']['phone']).to eq(@place.phone)
+                        expect(json['basic_info']['email']).to eq(@place.email)
                     end
                 end
             end
