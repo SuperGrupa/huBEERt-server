@@ -9,23 +9,25 @@ module API
                 #     @places = Place.includes(address: [street: {district: :city}])
                 # end
 
-                desc 'Return one address'
+                desc 'Return address of a given place'
                 get ':id/address', jbuilder: 'address/show' do
                     @address = Address.includes(street: {district: :city}).where(place_id: params[:id]).first
                 end
 
-                # desc 'Create place'
-                # params do
-                #     requires :place, type: Hash, desc: 'place attributes' do
-                #         requires :name, type: String, allow_blank: false
-                #         requires :description, type: String, allow_blank: false
-                #         optional :phone, type: Integer
-                #         optional :email, type: String, regexp: Place::EMAIL_FORMAT
-                #     end
-                # end
-                # post do
-                #     Place.create params[:place].to_h
-                # end
+                desc 'Create address'
+                params do
+                    requires :address, type: Hash, desc: 'address attributes' do
+                        requires :number, type: String, allow_blank: false
+                        requires :postcode, type: String, allow_blank: false
+                        requires :place_id, type: Integer
+                        requires :street_id, type: Integer
+                    end
+                end
+                post ':id/address' do
+                    Address.create params[:address].to_h
+                end
+
+                # CZY RESTANGULAR BĘDZIE DZIAŁAŁ Z TYM FORMATEM ŻĄDAŃ? :id/address
                 #
                 # desc 'Update place'
                 # params do
@@ -39,6 +41,8 @@ module API
                 #     place.update(params.to_h)
                 #     place
                 # end
+                #
+                # CZY USUWAMY ADRESY CZY TEŻ TYLKO UKRYWAMY? (NUMER, KOD POCZTOWY)
                 #
                 # desc 'Hide a place'
                 # delete ':id' do
