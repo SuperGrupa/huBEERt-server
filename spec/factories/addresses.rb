@@ -1,8 +1,7 @@
 FactoryGirl.define do
-  factory :address do
-    number "MyString"
-    postcode "MyString"
-    place nil
-  end
-
+    factory :address do
+        number "14"
+        postcode "64-320"
+        street
+    end
 end

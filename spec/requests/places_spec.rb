@@ -9,23 +9,25 @@ module Api
 
             describe 'getting place(s)' do
                 before do
-                    @place = Place.create! place_attributes
+                    @place = FactoryGirl.create(:place)
                 end
 
                 context 'GET api/v1/places' do
                     it 'returns one, created before place' do
                         get '/api/v1/places'
                         expect(json.length).to eq(1)
+                        expect(json.first['name']).to eq(@place.name)
+                        expect(json.first['address']).not_to eq(nil)
                     end
                 end
 
                 context 'GET api/v1/places/:id' do
                     it 'returns a place by id' do
                         get "/api/v1/places/#{@place.id}"
-                        expect(json['basic_info']['description']).to eq(@place.description)
-                        expect(json['basic_info']['name']).to eq(@place.name)
-                        expect(json['basic_info']['phone']).to eq(@place.phone)
-                        expect(json['basic_info']['email']).to eq(@place.email)
+                        expect(json['description']).to eq(@place.description)
+                        expect(json['name']).to eq(@place.name)
+                        expect(json['phone']).to eq(@place.phone)
+                        expect(json['email']).to eq(@place.email)
                     end
                 end
             end
@@ -64,7 +66,7 @@ module Api
 
             describe 'PATCH api/v1/places/:id' do
                 before do
-                    @place = Place.create! place_attributes
+                    @place = FactoryGirl.create(:place)
                 end
 
                 context 'with valid attributes' do
@@ -97,7 +99,7 @@ module Api
 
             describe 'DELETE api/v1/places/:id' do
                 before do
-                    @place = Place.create! place_attributes
+                    @place = FactoryGirl.create(:place)
                 end
 
                 it 'hides a place' do

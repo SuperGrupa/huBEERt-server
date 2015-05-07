@@ -15,32 +15,31 @@ module API
                         @address = Address.includes(street: {district: :city}).where(place_id: params[:id]).first
                     end
 
-                    desc 'Create address'
+                    # CHYBA POWINNIŚMY KORZYSTAĆ TYLKO Z UPDATE
+                    # desc 'Create address'
+                    # params do
+                    #     requires :address, type: Hash, desc: 'address attributes' do
+                    #         requires :number, type: String, allow_blank: false
+                    #         requires :postcode, type: String, allow_blank: false
+                    #         requires :place_id, type: Integer
+                    #         requires :street_id, type: Integer
+                    #     end
+                    # end
+                    # post ':id/address' do
+                    #     Address.create params[:address].to_h
+                    # end
+
+                    desc 'Update address'
                     params do
-                        requires :address, type: Hash, desc: 'address attributes' do
-                            requires :number, type: String, allow_blank: false
-                            requires :postcode, type: String, allow_blank: false
-                            requires :place_id, type: Integer
-                            requires :street_id, type: Integer
-                        end
+                        optional :number, type: String, allow_blank: false
+                        optional :postcode, type: String, allow_blank: false
                     end
-                    post ':id/address' do
-                        Address.create params[:address].to_h
+                    patch ':id/address' do
+                        address = Address.where(place_id: params[:id]).first
+                        address.update(params.to_h)
+                        address
                     end
 
-                    # desc 'Update place'
-                    # params do
-                    #     optional :name, type: String, allow_blank: false
-                    #     optional :description, type: String, allow_blank: false
-                    #     optional :phone, type: Integer
-                    #     optional :email, type: String, regexp: Place::EMAIL_FORMAT
-                    # end
-                    # patch ':id' do
-                    #     place = Place.find(params[:id])
-                    #     place.update(params.to_h)
-                    #     place
-                    # end
-                    #
                     # CZY USUWAMY ADRESY CZY TEŻ TYLKO UKRYWAMY? (NUMER, KOD POCZTOWY)
                     #
                     # desc 'Hide a place'
