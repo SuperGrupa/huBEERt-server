@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_many :auth_tokens
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :email, presence: true, uniqueness: true
@@ -12,10 +14,10 @@ class User < ActiveRecord::Base
   end
 
   # Used for user authentication
-  def ensure_authentication_token
-    self.authentication_token = generate_authentication_token
-    self.save!
-    self.authentication_token
+  def ensure_authentication_token (remember)
+    token = AuthToken.create!(token: generate_authentication_token,
+                               remember: remember,
+                               user_id: self.id)
   end
 
   private
