@@ -28,18 +28,18 @@ module API
                     # post ':id/address' do
                     #     Address.create params[:address].to_h
                     # end
-
-                    desc 'Update address'
-                    params do
-                        optional :number, type: String, allow_blank: false
-                        optional :postcode, type: String, allow_blank: false
-                    end
-                    patch ':id/address' do
-                        address = Address.where(place_id: params[:id]).first
-                        address.update(params.to_h)
-                        address
-                    end
-
+                    #
+                    # desc 'Update address'
+                    # params do
+                    #     optional :number, type: String, allow_blank: false
+                    #     optional :postcode, type: String, allow_blank: false
+                    # end
+                    # patch ':id/address' do
+                    #     address = Address.where(place_id: params[:id]).first
+                    #     address.update(params.to_h)
+                    #     address
+                    # end
+                    #
                     # CZY USUWAMY ADRESY CZY TEŻ TYLKO UKRYWAMY? (NUMER, KOD POCZTOWY)
                     #
                     # desc 'Hide a place'
