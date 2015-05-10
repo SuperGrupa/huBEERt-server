@@ -11,6 +11,7 @@ module API
             
             mount API::V1::Cities_API::Cities
             mount API::V1::Cities_API::Districts
+            mount API::V1::Cities_API::Streets
             
             add_swagger_documentation api_version: 'api/v1'
         end
