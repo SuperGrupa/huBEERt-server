@@ -17,7 +17,12 @@ module API
 
                 helpers do
                   def current_user
-                    @current_user ||= User.authorize!(env)
+                    token = AuthToken.where(token: headers["Authorization"]).first
+                    if token
+                        @current_user = token.user
+                    else
+                        @current_user = nil
+                    end
                   end
 
                   def authenticate!
