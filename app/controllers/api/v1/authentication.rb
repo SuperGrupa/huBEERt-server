@@ -10,20 +10,40 @@ module API
 
       resource :auth do
 
+        desc 'Register a user'
+        params do
+          requires :email, type: String, allow_blank: false, regexp: /.+@.+/, documentation: { example: 'example@hubeert.com' }
+          requires :login, type: String, allow_blank: false
+          requires :password, type: String, allow_blank: false
+          optional :remember, type: Boolean, allow_blank: false
+        end
+        post 'register', jbuilder: 'authentication/register' do
+          @user = User.create params.to_h
+          if @user.save
+            @token = @user.ensure_authentication_token(params[:remember])
+          else
+            @user = nil
+            @error = "Podane dane są niepoprawne"
+          end
+        end
+
         desc 'Log in a user'
         params do
-          optional :email, type: String, allow_blank: false, regexp: /.+@.+/
-          optional :login, type: String, allow_blank: false
+          optional :email, type: String, allow_blank: false
           requires :password, type: String, allow_blank: false
           optional :remember, type: Boolean, allow_blank: false
         end
         post 'login', jbuilder: 'authentication/login' do
-          @user = User.find_for_database_authentication(email: params[:email])
-          if @user && @user.valid_password?(params[:password])
-            # @user.class.module_eval { attr_accessor :token}
-            @token = @user.ensure_authentication_token(params[:remember])
+          @user = User.find_for_database_authentication(email: params[:email]) || User.find_for_database_authentication(login: params[:email])
+          if @user
+            if @user.valid_password?(params[:password])
+              @token = @user.ensure_authentication_token(params[:remember])
+            else
+              @user = nil
+              @error = "Niepoprawne hasło"
+            end
           else
-            status 300
+            @error = "Niepoprawny email lub login"
           end
         end
 
