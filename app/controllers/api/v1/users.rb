@@ -56,6 +56,31 @@ module API
           user.update(hidden: false)
           user
         end
+
+        desc "Check if email is taken"
+        params do
+          requires :email, type: String
+        end
+        post 'check_email' do
+          if User.where(email: params[:email]).blank?
+            true
+          else
+            false
+          end
+        end
+
+        desc "Check if login is taken"
+        params do
+          requires :login, type: String
+        end
+        post 'check_login' do
+          if User.where(login: params[:login]).blank?
+            true
+          else
+            false
+          end
+        end
+
       end
     end
   end
