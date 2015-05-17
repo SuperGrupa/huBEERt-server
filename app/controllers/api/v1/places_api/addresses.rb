@@ -5,30 +5,30 @@ module API
                 include API::V1::Defaults
 
                 resource :places do
-                    # desc 'Return list of places'
-                    # get jbuilder: 'places/index' do
-                    #     @places = Place.includes(address: [street: {district: :city}])
-                    # end
-
                     desc 'Return address of a given place'
                     get ':id/address', jbuilder: 'places/address/show' do
                         @address = Address.includes(street: {district: :city}).where(place_id: params[:id]).first
                     end
 
-                    # CHYBA POWINNIŚMY KORZYSTAĆ TYLKO Z UPDATE
-                    # desc 'Create address'
-                    # params do
-                    #     requires :address, type: Hash, desc: 'address attributes' do
-                    #         requires :number, type: String, allow_blank: false
-                    #         requires :postcode, type: String, allow_blank: false
-                    #         requires :place_id, type: Integer
-                    #         requires :street_id, type: Integer
-                    #     end
-                    # end
-                    # post ':id/address' do
-                    #     Address.create params[:address].to_h
-                    # end
-                    #
+                    desc 'Create address'
+                    params do
+                        requires :address, type: Hash, desc: 'address attributes' do
+                            requires :street, type: Hash do
+                                requires :id, type: Integer
+                                requires :number, type: Integer
+                            end
+                            requires :postcode, type: String, allow_blank: false
+                        end
+                    end
+                    post ':id/address' do
+                        address = {
+                            postcode: params[:address][:postcode],
+                            number: params[:address][:street][:number],
+                            street_id: params[:address][:street][:id]
+                        }
+                        Place.find(params[:id]).create_address(address)
+                    end
+
                     # desc 'Update address'
                     # params do
                     #     optional :number, type: String, allow_blank: false
