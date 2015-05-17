@@ -59,7 +59,7 @@ module API
 
         desc "Check if email is taken"
         params do
-          requires :email, type: String
+          requires :email, type: String, allow_blank: false
         end
         post 'check_email' do
           if User.where(email: params[:email]).blank?

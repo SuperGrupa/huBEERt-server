@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   # Ensure deleted users cannot sign in
-  def active_for_authentication?
-    super && !deleted_at
-  end
+  # def active_for_authentication?
+  #   super && !deleted_at
+  # end
 
   # Used for user authentication
   def ensure_authentication_token (remember)

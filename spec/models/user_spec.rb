@@ -26,6 +26,26 @@ RSpec.describe User, type: :model do
       @user1 = User.create user_atrr
       expect(@user1).not_to be_valid
     end
+  end
 
+  describe 'tokens' do
+    before do
+      @user = User.create! user_atrr
+    end
+
+    describe 'generate_authentication_token method' do
+      it 'should generate token' do
+        token = @user.send(:generate_authentication_token)
+        expect(token).not_to eq(nil)
+      end
+    end
+
+    describe 'ensure_authentication_token method' do
+      it 'should generate AuthToken model' do
+        expect {
+          @user.ensure_authentication_token(true)
+        }.to change(AuthToken, :count).by(1)
+      end
+    end
   end
 end
