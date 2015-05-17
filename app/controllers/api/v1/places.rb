@@ -36,7 +36,6 @@ module API
                 end
                 patch ':id' do
                     place = Place.find(params[:id])
-                    p params
                     place.update(params.to_h)
                     place
                 end
