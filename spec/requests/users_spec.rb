@@ -170,5 +170,3 @@ module Api
     end
   end
 end
-
-#expect(response.body).to eq('user[password] is empty')
