@@ -13,6 +13,8 @@ module API
             mount API::V1::Cities_API::Districts
             mount API::V1::Cities_API::Streets
             
+            mount API::V1::OpeningHours_API::WeekDays
+            
             add_swagger_documentation api_version: 'api/v1'
         end
     end
