@@ -9,13 +9,15 @@ module Api
 
             describe 'getting place(s)' do
                 before do
-                    @place = Place.create! place_attributes
+                    @place = FactoryGirl.create(:place)
                 end
 
                 context 'GET api/v1/places' do
                     it 'returns one, created before place' do
                         get '/api/v1/places'
                         expect(json.length).to eq(1)
+                        expect(json.first['name']).to eq(@place.name)
+                        expect(json.first['address']).not_to eq(nil)
                     end
                 end
 
@@ -64,7 +66,7 @@ module Api
 
             describe 'PATCH api/v1/places/:id' do
                 before do
-                    @place = Place.create! place_attributes
+                    @place = FactoryGirl.create(:place)
                 end
 
                 context 'with valid attributes' do
@@ -97,7 +99,7 @@ module Api
 
             describe 'DELETE api/v1/places/:id' do
                 before do
-                    @place = Place.create! place_attributes
+                    @place = FactoryGirl.create(:place)
                 end
 
                 it 'hides a place' do

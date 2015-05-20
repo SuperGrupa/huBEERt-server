@@ -1,7 +1,6 @@
 FactoryGirl.define do
-  factory :street do
-    name "MyString"
-    district nil
-  end
-
+    factory :street do
+        name "Pogodna"
+        district
+    end
 end
