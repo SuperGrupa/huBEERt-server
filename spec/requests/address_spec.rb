@@ -9,9 +9,6 @@ module Api
 
             let(:json) { JSON.parse(response.body) }
 
-            address_attributes = FactoryGirl.attributes_for :address
-            place_attributes   = FactoryGirl.attributes_for :place
-
             describe 'getting address' do
                 context 'GET api/v1/places/:id/address' do
                     it 'returns an address of prevoiusly created place' do
@@ -28,7 +25,7 @@ module Api
                     it 'creates a new address for place' do
                         expect {
                             post "/api/v1/places/#{@place.id}/address",
-                            address: address_attributes
+                            address: { postcode: '60-150', street: {id: '1', number: '1' } }
                         }.to change(Address, :count).by(1)
                     end
                 end
@@ -36,7 +33,7 @@ module Api
                 context 'with invalid attributes' do
                     it 'missing postcode' do
                         expect {
-                            post "/api/v1/places/#{@place.id}/address", address: { number: "1" }
+                            post "/api/v1/places/#{@place.id}/address", address: { number: '1' }
                         }.not_to change(Address, :count)
                         expect(json['error']).not_to eq(nil)
                     end
