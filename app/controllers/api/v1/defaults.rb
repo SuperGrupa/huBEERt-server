@@ -15,6 +15,21 @@ module API
                     error_response(message: e.message, status: 404)
                 end
 
+                helpers do
+                  def current_user
+                    token = AuthToken.where(token: headers["Authorization"]).first
+                    if token
+                        @current_user = token.user
+                    else
+                        @current_user = nil
+                    end
+                  end
+
+                  def authenticate!
+                    error!('401 Unauthorized', 401) unless current_user
+                  end
+                end
+
                 # global exception handler, used for error notifications
 =begin
 

@@ -17,7 +17,7 @@ class Seed
                              password:      Faker::Internet.password,
                              firstname:     Faker::Name.first_name,
                              lastname:      Faker::Name.last_name,
-                             date_of_birth: rand(50.years).ago,
+                             date_of_birth: Time.at(rand * Time.now.to_i),
                              city:          Faker::Address.city)
             end
 

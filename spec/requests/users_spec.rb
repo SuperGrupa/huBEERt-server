@@ -90,7 +90,6 @@ module Api
             expect(json['error']).not_to eq(nil)
           end
         end
-
       end
 
       describe "DELETE /api/v1/users/:id" do
@@ -119,8 +118,55 @@ module Api
         end
       end
 
+      describe "POST /api/v1/users/check_email" do
+        before do
+          @user = User.create! user_atrr
+        end
+
+        describe 'with valid atributes' do
+          it 'return "true"' do
+            post "/api/v1/users/check_email", {email: user_atrr[:email]}
+            expect(response.body).to eq("false")
+          end
+
+          it 'return "false"' do
+            post "/api/v1/users/check_email", {email: 'asd'}
+            expect(response.body).to eq("true")
+          end
+        end
+
+        describe 'with invalid atributes' do
+          it 'return a nil' do
+            post "/api/v1/users/check_email", {email: 123}
+            expect(response.body).not_to eq(nil)
+          end
+        end
+      end
+
+      describe "POST /api/v1/users/check_login" do
+        before do
+          @user = User.create! user_atrr
+        end
+
+        describe 'with valid atributes' do
+          it 'return "true"' do
+            post "/api/v1/users/check_login", {login: user_atrr[:login]}
+            expect(response.body).to eq("false")
+          end
+
+          it 'return "false"' do
+            post "/api/v1/users/check_login", {login: 'asd'}
+            expect(response.body).to eq("true")
+          end
+        end
+
+        describe 'with invalid atributes' do
+          it 'return a nill' do
+            post "/api/v1/users/check_login", {login: 123}
+            expect(response.body).not_to eq(nil)
+          end
+        end
+      end
     end
   end
 end
-
-#expect(response.body).to eq('user[password] is empty')
