@@ -14,7 +14,7 @@ module API
                     params do
                         requires :opening_hours, type: Array, desc: 'opening hours attributes' do
                             requires :from, type: String, allow_blank: false
-                            requires :to, type: String, allow_blank: false
+                            requires :to, type: String, allow_blank: true
                             requires :days, type: Array do
                                 requires :id, type: Integer
                             end
