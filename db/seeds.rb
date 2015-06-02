@@ -3,7 +3,11 @@
 
 class Seed
     def self.run
+        users
         prepare_place_categories
+        prepare_week_days
+        prepare_cities
+        places
     end
 
     private
