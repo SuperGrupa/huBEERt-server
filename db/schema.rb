@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602115122) do
+ActiveRecord::Schema.define(version: 20150602120658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,8 @@ ActiveRecord::Schema.define(version: 20150602115122) do
   add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string  "name"
-    t.integer "place_id"
+    t.string "name"
   end
-
-  add_index "categories", ["place_id"], name: "index_categories_on_place_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -87,6 +84,13 @@ ActiveRecord::Schema.define(version: 20150602115122) do
     t.boolean  "hidden"
   end
 
+  create_table "places_categories", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "category_id"
+  end
+
+  add_index "places_categories", ["place_id", "category_id"], name: "places_categories_index", unique: true, using: :btree
+
   create_table "streets", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.integer  "district_id"
@@ -126,5 +130,4 @@ ActiveRecord::Schema.define(version: 20150602115122) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "categories", "places"
 end

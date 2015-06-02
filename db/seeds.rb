@@ -3,10 +3,7 @@
 
 class Seed
     def self.run
-        users
-        prepare_week_days
-        prepare_cities
-        places
+        prepare_place_categories
     end
 
     private
@@ -27,6 +24,15 @@ class Seed
                          firstname:     'Ad',
                          lastname:      'Min',
                          city:          'Poznan')
+        end
+        
+        def self.prepare_place_categories
+            categories = ['muzyczny', 'bilardowy', 'irish', 'klubokawiarnia', 'komunistyczny',
+                          'angielski', 'artystyczny']
+            
+            categories.each do |cat|
+                Category.create!(name: cat)
+            end
         end
 
         def self.prepare_week_days
