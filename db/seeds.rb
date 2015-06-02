@@ -85,6 +85,13 @@ class Seed
             Address.create!(place_id: pub.id, number: number, postcode: postcode,
                             street_id: Street.ids.sample)
         end
+        
+        def self.categories(pub)
+            categories = Category.all.sample(Random.rand(3) + 1)
+            categories.each do |c|
+                pub.categories << c
+            end
+        end
 
         def self.places
             30.times do
@@ -95,6 +102,7 @@ class Seed
 
                 pub = Place.create!(name: name, description: description, phone: phone, email: email)
                 opening_hours(pub)
+                categories(pub)
                 address(pub)
             end
         end

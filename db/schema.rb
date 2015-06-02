@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20150602120658) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "number",     limit: 255
-    t.string   "postcode",   limit: 255
+    t.string   "number"
+    t.string   "postcode"
     t.integer  "place_id"
     t.integer  "street_id"
     t.datetime "created_at"
@@ -42,14 +42,21 @@ ActiveRecord::Schema.define(version: 20150602120658) do
     t.string "name"
   end
 
+  create_table "categories_places", force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "category_id"
+  end
+
+  add_index "categories_places", ["place_id", "category_id"], name: "categories_places_index", unique: true, using: :btree
+
   create_table "cities", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "districts", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -75,24 +82,17 @@ ActiveRecord::Schema.define(version: 20150602120658) do
   add_index "opening_hours_week_days", ["opening_hour_id", "week_day_id"], name: "opening_hour_week_day_index", unique: true, using: :btree
 
   create_table "places", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.text     "description"
     t.integer  "phone"
-    t.string   "email",       limit: 255
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden"
   end
 
-  create_table "places_categories", force: :cascade do |t|
-    t.integer "place_id"
-    t.integer "category_id"
-  end
-
-  add_index "places_categories", ["place_id", "category_id"], name: "places_categories_index", unique: true, using: :btree
-
   create_table "streets", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.integer  "district_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -101,20 +101,20 @@ ActiveRecord::Schema.define(version: 20150602120658) do
   add_index "streets", ["district_id"], name: "index_streets_on_district_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255
-    t.string   "login",                  limit: 255
-    t.string   "firstname",              limit: 255
-    t.string   "lastname",               limit: 255
+    t.string   "email"
+    t.string   "login"
+    t.string   "firstname"
+    t.string   "lastname"
     t.date     "date_of_birth"
-    t.string   "city",                   limit: 255
+    t.string   "city"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",                             default: false
-    t.string   "encrypted_password",                 default: "",    null: false
+    t.boolean  "hidden",                 default: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150602120658) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "week_days", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

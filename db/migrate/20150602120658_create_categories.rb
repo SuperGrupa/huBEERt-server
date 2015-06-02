@@ -4,12 +4,12 @@ class CreateCategories < ActiveRecord::Migration
             t.string :name
         end
         
-        create_table :places_categories do |t|
+        create_table :categories_places do |t|
             t.belongs_to :place
             t.belongs_to :category
         end
 
-        add_index :places_categories, [:place_id, :category_id], unique: true,
-                                            name: 'places_categories_index'
+        add_index :categories_places, [:place_id, :category_id], unique: true,
+                                            name: 'categories_places_index'
     end
 end
