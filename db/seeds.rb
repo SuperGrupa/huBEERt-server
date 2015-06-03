@@ -4,6 +4,7 @@
 class Seed
     def self.run
         users
+        prepare_place_categories
         prepare_week_days
         prepare_cities
         places
@@ -27,6 +28,15 @@ class Seed
                          firstname:     'Ad',
                          lastname:      'Min',
                          city:          'Poznan')
+        end
+        
+        def self.prepare_place_categories
+            categories = ['muzyczny', 'bilardowy', 'irish', 'klubokawiarnia', 'komunistyczny',
+                          'angielski', 'artystyczny']
+            
+            categories.each do |cat|
+                Category.create!(name: cat)
+            end
         end
 
         def self.prepare_week_days
@@ -75,6 +85,13 @@ class Seed
             Address.create!(place_id: pub.id, number: number, postcode: postcode,
                             street_id: Street.ids.sample)
         end
+        
+        def self.categories(pub)
+            categories = Category.all.sample(Random.rand(3) + 1)
+            categories.each do |c|
+                pub.categories << c
+            end
+        end
 
         def self.places
             30.times do
@@ -85,6 +102,7 @@ class Seed
 
                 pub = Place.create!(name: name, description: description, phone: phone, email: email)
                 opening_hours(pub)
+                categories(pub)
                 address(pub)
             end
         end

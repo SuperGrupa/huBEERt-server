@@ -9,6 +9,7 @@ module API
             mount API::V1::Places_API::Places
             mount API::V1::Places_API::Addresses
             mount API::V1::Places_API::OpeningHours
+            mount API::V1::Places_API::Categories
             
             mount API::V1::Cities_API::Cities
             mount API::V1::Cities_API::Districts
