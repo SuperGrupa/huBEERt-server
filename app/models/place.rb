@@ -2,6 +2,7 @@ class Place < ActiveRecord::Base
     has_one :address
     has_many :opening_hours
     has_and_belongs_to_many :categories
+    has_and_belongs_to_many :tags
 
     before_save :tagging
 
@@ -13,7 +14,12 @@ class Place < ActiveRecord::Base
     
     private
         
-        def tagging()
-            p self
+        def tagging
+            if self.name_changed?
+                name_tag = self.tags.find { |tag| tag.name == self.name_was } || Tag.new
+                name_tag.name = self.name
+                name_tag.save
+                return true
+            end
         end
 end
