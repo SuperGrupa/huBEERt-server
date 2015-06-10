@@ -161,6 +161,7 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-perftest (0.0.6)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -197,6 +198,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    ruby-prof (0.15.8)
     sass (3.4.13)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -214,7 +216,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    spring (1.3.4)
+    spring (1.3.6)
     sprockets (3.0.1)
       rack (~> 1.0)
     sprockets-rails (2.2.4)
@@ -265,12 +267,17 @@ DEPENDENCIES
   rack-contrib
   rack-cors
   rails (= 4.2.1)
+  rails-perftest
   rails_12factor
   rspec-rails
+  ruby-prof
   sass-rails
   sdoc (~> 0.4.0)
   shoulda-matchers
   simplecov
-  spring
+  spring (>= 1.3.6)
   turbolinks
   uglifier (>= 1.3.0)
+
+BUNDLED WITH
+   1.10.2
