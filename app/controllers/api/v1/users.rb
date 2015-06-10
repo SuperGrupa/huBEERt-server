@@ -30,7 +30,6 @@ module API
         desc 'Update a user'
         params do
           requires :email, type: String, allow_blank: false, regexp: /.+@.+/, documentation: { example: 'example@hubeert.com' }
-          optional :password, type: String, allow_blank: false
           optional :firstname, type: String
           optional :lastname, type: String
           optional :city, type: String
