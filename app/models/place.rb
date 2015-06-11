@@ -11,9 +11,9 @@ class Place < ActiveRecord::Base
     validates :name, presence: true, length: { maximum: 50 }
     validates :description, presence: true, length: { maximum: 500 }
     validates :email, format: { with: EMAIL_FORMAT }, allow_blank: true
-    
+
     private
-        
+
         def tagging
             if self.name_changed?
                 name_tag = self.tags.find { |tag| tag.name == self.name_was } || Tag.new
