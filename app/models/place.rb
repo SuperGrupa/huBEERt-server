@@ -1,4 +1,5 @@
 class Place < ActiveRecord::Base
+    include PlacesHelper
     include TagsHelper
 
     has_one :address

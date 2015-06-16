@@ -23,8 +23,6 @@ module TagsHelper
             end
             tag_current.save
             place.tags << tag_current
-            
-            true
         end
     end
 end
