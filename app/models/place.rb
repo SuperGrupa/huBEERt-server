@@ -1,10 +1,13 @@
 class Place < ActiveRecord::Base
+    include PlacesHelper
+    include TagsHelper
+
     has_one :address
     has_many :opening_hours
     has_and_belongs_to_many :categories
     has_and_belongs_to_many :tags
 
-    before_save :tagging
+    after_save :tag_name
 
     EMAIL_FORMAT = /\A[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
 
@@ -14,12 +17,9 @@ class Place < ActiveRecord::Base
     
     private
         
-        def tagging
-            if self.name_changed?
-                name_tag = self.tags.find { |tag| tag.name == self.name_was } || Tag.new
-                name_tag.name = self.name
-                name_tag.save
-                return true
+        def tag_name
+            self.name.split(" ").each do |text|
+                tagging(self.id, current: text, previous: self.name_was, weight: 10)
             end
         end
 end
