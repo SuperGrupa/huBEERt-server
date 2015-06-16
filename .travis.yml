@@ -1,27 +1,23 @@
 language: ruby
 rvm:
-  - 2.1.3
+- 2.1.3
 script:
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec rake
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake
 before_script:
-  - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database huBEERt_test' -U postgres
-  - cp config/secrets.yml.example config/secrets.yml
+- cp config/database.travis.yml config/database.yml
+- psql -c 'create database huBEERt_test' -U postgres
+- cp config/secrets.yml.example config/secrets.yml
 addons:
   code_climate:
     repo_token: ddb00eb0aaf5ba29c767f3a809f55be3688bf62f0a31aaf902687e39d9ccee27
 notifications:
   email: false
 deploy:
-  provider:
-    provider: cloudfoundry
-  api: https://api.de.a9s.eu
-  username: dakolech@gmail.com
-  password:
-    secure: HTb2Mr5WIwMan8HzYVQ4Rq2uMJPYAKClePBK/Z/90SkFAjRnZvB8xdPtgetaadYwLPIrBpIuEZavsUUJoXIX8VPo/BVUbkq7kHqG26yO3DRlI7XMDQ+zV2ywGyRx3aBZcblsigcE+tbOz2pSsbrHDfyKVMD2CDf8dOAVI8oU9ys=
-  organization: ''
-  space: test
-  on:
-    repo: SuperGrupa/huBEERt-server
+  provider: heroku
+  api_key:
+    secure: LeTyCuyGTSUOEENIiwZb7ghBiQQyawV2pyP/RARml3uGT1ZMDEizCWD8whHBsK9DmvV4ZXr4Dfw0n9Dd17TDsiBuWTYyeVM4p61bgbS5KZm39BYt1xHVpkSQelaWJtyWNqily6qv3Ddq/9ZL6rLkMxkJFyuygPAHOpO4JLTkyLQ=
+  app: lit-garden-6724
+  run:
+    - "rake db:migrate"
