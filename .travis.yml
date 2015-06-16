@@ -21,4 +21,3 @@ deploy:
   app: lit-garden-6724
   run:
     - "rake db:migrate"
-  on: develop
