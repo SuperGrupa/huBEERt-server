@@ -8,7 +8,6 @@ script:
 before_script:
 - cp config/database.travis.yml config/database.yml
 - psql -c 'create database huBEERt_test' -U postgres
-- cp config/secrets.yml.example config/secrets.yml
 addons:
   code_climate:
     repo_token: ddb00eb0aaf5ba29c767f3a809f55be3688bf62f0a31aaf902687e39d9ccee27
