@@ -10,15 +10,17 @@ module API
                     requires :city, type: String, allow_blank: false
                 end
                 get jbuilder: 'search/index' do
-                    # wywal znaki " z nazwy miasta
+                    # wywal znaki " z nazwy miasta i z zapytania
                     params[:city] = params[:city].tr("\"", "")
+                    params[:q] = params[:q].tr("\"", "")
 
                     @places = Place.includes(address: [street: {district: :city}])
                                    .find_all { |place| place.address.street.district.city.name == params[:city] }
-                    ratings = @places.map do |place|
+
+                    @ratings = @places.map do |place|
                         { place: place, searchRating: place.rate(params[:q].split(" ")) }
                     end
-                    ratings.sort { |r1, r2| r2[:searchRating] <=> r1[:searchRating] }
+                    @ratings.sort! { |r1, r2| r2[:searchRating] <=> r1[:searchRating] }
                 end
             end
         end

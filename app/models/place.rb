@@ -18,6 +18,8 @@ class Place < ActiveRecord::Base
     private
         
         def tag_name
-            tagging(self.id, current: self.name, previous: self.name_was, weight: 10)
+            self.name.split(" ").each do |text|
+                tagging(self.id, current: text, previous: self.name_was, weight: 10)
+            end
         end
 end
