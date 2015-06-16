@@ -4,6 +4,5 @@ unless place.address.nil?
         json.number place.address.number
         json.street place.address.street.name
         json.city   place.address.street.district.city.name
-        json.test   "test"
     end
 end
