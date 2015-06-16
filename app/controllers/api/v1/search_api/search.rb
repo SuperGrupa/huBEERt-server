@@ -21,6 +21,7 @@ module API
                         { place: place, searchRating: place.rate(params[:q].split(" ")) }
                     end
                     @ratings.sort! { |r1, r2| r2[:searchRating] <=> r1[:searchRating] }
+                    @ratings.delete_if { |rating| rating[:searchRating] == 0 }
                 end
             end
         end
