@@ -1,0 +1,13 @@
+Definicja Celu:
+    - dokonać analizy serwera projektu huBEERt
+    - w celu skontrolowania stopnia niezawodności kodu
+    - w odniesieniu do stopnia pokrycia kodu testami
+    - z perspektywy zespołu wytwarzającego
+    - w kontekście serwera odpowiadającego na żądania protokołu HTTP
+    i zwracającego odpowiedzi w formacie JSON
+
+Wybrana metryka: Code Coverage (% pokrycia kodu testami jednostkowymi)
+
+GQ: Jaka część kodu została otestowana za pomocą biblioteki RSpec?
+    Jakie miejsca w kodzie NIE posiadają odpowiadających im testów?
+
