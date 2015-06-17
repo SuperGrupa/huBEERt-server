@@ -7,7 +7,7 @@ class Place < ActiveRecord::Base
     has_and_belongs_to_many :categories, after_add: :tag_category
     has_and_belongs_to_many :tags
 
-    after_save :tag_place
+    after_save :tag_name
 
     EMAIL_FORMAT = /\A[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
 
@@ -17,19 +17,9 @@ class Place < ActiveRecord::Base
     
     private
         
-        def tag_place
+        def tag_name
             if self.name_changed?
                 tagging(self.id, current: self.name, previous: self.name_was, weight: 10)
-            end
-            
-            if not self.address.nil? and self.address.changed?
-                tagging(self.id, current: address.street.name, previous: address.street.name_was, weight: 8)
-                tagging(self.id, current: address.street.district.name,
-                                 previous: address.street.district.name_was,
-                                 weight: 6)
-                tagging(self.id, current: address.street.district.city.name,
-                                 previous: address.street.district.city.name_was,
-                                 weight: 4)
             end
         end
         
