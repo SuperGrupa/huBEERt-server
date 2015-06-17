@@ -3,7 +3,7 @@ require 'rails/performance_test_help'
 
 class UsersTest < ActionDispatch::PerformanceTest
   # Refer to the documentation for all available options
-  self.profile_options = { runs: 5, metrics: [:wall_time, :objects]}
+  self.profile_options = { runs: 5, metrics: [:wall_time, :process_time, :objects]}
   #                          output: 'tmp/performance', formats: [:flat] }
 
 
