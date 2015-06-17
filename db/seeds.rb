@@ -31,7 +31,7 @@ class Seed
         end
         
         def self.prepare_place_categories
-            categories = ['muzyczny', 'bilardowy', 'irish', 'klubokawiarnia', 'komunistyczny',
+            categories = ['muzyczny', 'bilard', 'irish', 'klub', 'kawiarnia', 'komunistyczny',
                           'angielski', 'artystyczny']
             
             categories.each do |cat|

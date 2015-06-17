@@ -25,7 +25,7 @@ module Api
                     it 'creates a new address for place' do
                         expect {
                             post "/api/v1/places/#{@place.id}/address",
-                            address: { postcode: '60-150', street: {id: '1', number: '1' } }
+                            address: { postcode: '60-150', street: {id: Street.first.id, number: '1' } }
                         }.to change(Address, :count).by(1)
                     end
                 end

@@ -4,7 +4,7 @@ class Place < ActiveRecord::Base
 
     has_one :address
     has_many :opening_hours
-    has_and_belongs_to_many :categories
+    has_and_belongs_to_many :categories, after_add: :tag_category
     has_and_belongs_to_many :tags
 
     after_save :tag_name
@@ -18,8 +18,12 @@ class Place < ActiveRecord::Base
     private
         
         def tag_name
-            self.name.split(" ").each do |text|
-                tagging(self.id, current: text, previous: self.name_was, weight: 10)
+            if self.name_changed?
+                tagging(self.id, current: self.name, previous: self.name_was, weight: 10)
             end
+        end
+        
+        def tag_category(category)
+            tagging(self.id, current: category.name, previous: category.name_was, weight: 4)
         end
 end

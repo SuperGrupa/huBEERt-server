@@ -13,22 +13,22 @@ class Address < ActiveRecord::Base
     private
 
         def tag_address
-            self.street.name.split(" ").each do |text|
-                tagging(self.place_id, current:  text,
-                                       previous: self.street.name_was, 
-                                       weight:   8)
-            end
-            
-            self.street.district.name.split(" ").each do |text|
-                tagging(self.place_id, current:  self.street.district.name,
-                                       previous: self.street.district.name_was,
-                                       weight:   6)
-            end
-            
-            self.street.district.city.name.split(" ").each do |text|
-                tagging(self.place_id, current:  self.street.district.city.name,
-                                       previous: self.street.district.city.name_was,
-                                       weight:   4)
+            unless self.place_id.nil?
+                if self.street.name_changed?
+                    tagging(self.place_id, current: self.street.name, previous: self.street.name_was, weight: 8)
+                end
+                
+                if self.street.district.name_changed?
+                    tagging(self.place_id, current:  self.street.district.name,
+                                           previous: self.street.district.name_was,
+                                           weight:   6)
+                end
+                
+                if self.street.district.city.name_changed?
+                    tagging(self.place_id, current:  self.street.district.city.name,
+                                           previous: self.street.district.city.name_was,
+                                           weight:   4)
+                end
             end
         end
 end
